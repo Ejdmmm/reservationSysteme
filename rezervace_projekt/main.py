@@ -60,6 +60,10 @@ class ReservationSystem:
         self.load_reservations()
 
         self.clear_frame()
+        
+        # Přidání plátna
+        self.add_screen()
+
         self.info_label = tk.Label(self.main_frame, text=f"Rezervace: {self.movie_name}", font=("Arial", 20, "bold"), fg="white", bg="#1e1e1e")
         self.info_label.pack(pady=10)
 
@@ -72,6 +76,13 @@ class ReservationSystem:
 
         # Přidání tlačítka pro zpět do přehledu filmů
         tk.Button(self.main_frame, text="Zpět k přehledu filmů", command=self.user_menu if self.role == "User" else self.admin_menu, bg="#ffcc99", width=20, height=2, relief="raised").pack(pady=10)
+
+    def add_screen(self):
+        # Plátno (screen) nad rezervacemi
+        screen_frame = tk.Frame(self.main_frame, bg="black", width=600, height=100)
+        screen_frame.pack(pady=20)
+        screen_label = tk.Label(screen_frame, text="PLÁTNO", font=("Arial", 20, "bold"), fg="white", bg="black")
+        screen_label.pack(pady=30)
 
     def add_admin_controls(self):
         self.delete_button = tk.Button(self.main_frame, text="Zrušit sedadlo", command=self.delete_seat, bg="#ffcc66", width=20, height=2, relief="raised")
